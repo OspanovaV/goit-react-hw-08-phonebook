@@ -1,76 +1,107 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Filter } from 'components/Filter/Filter';
-import { ContactList } from 'components/ContactList/ContactList';
-import { filterContacts } from 'redux/filterSlice';
-import * as operations from 'redux/operations';
-import { selectContacts, selectFilter, selectState } from 'redux/selector';
-import { Container, Section, TitleH1, TitleH2 } from './AppStyled';
+import { getIsRefreshing } from 'redux/selector';
+import { refreshUser } from 'redux/operations';
+import { Layout } from 'components/Layout';
+import { AppBar } from 'components/AppBar/AppBar';
+import { Wrapper } from './AppStyled';
+import { ThemeProvider } from '@mui/material';
+import { theme } from 'shared/theme';
 
 export const App = () => {
+
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const filterName = useSelector(selectFilter);
-  const { isloading, error } = useSelector(selectState);
-  
-useEffect(() => { dispatch(operations.fetchContacts()) }, [dispatch]);
-
-// Добавляет контакт в список
-   const addNewContact = ({ name, phone }) => {
-    const normalizedFind = name.toLowerCase();
-    const findName = contacts.find(
-      contact => contact.name.toLowerCase() === normalizedFind
-    );
-    if (findName) {
-      return alert(`${name} is already in contacts.`);
-    }
-    const findNumber = contacts.find(
-      contact => contact.phone === phone
-    );
-    if (findNumber) {
-      return alert(`This phone number is already in use.`);
-    }   
-    //  dispatch(addContact({ name, phone }));
-  };
-  
-  const handleFilter = evt => {
-    const { value } = evt.currentTarget;
-    dispatch(filterContacts(value));
-  };
-
- // Возвращает результат фильтра
-  const getFilterContact = () => {
-    if (!filterName) {
-      return contacts;
-    }
-    const normalaizedFilter = filterName.toLowerCase();
-
-    return contacts.filter(({ name }) => {
-      const normalaizedName = name.toLowerCase();
-      const result = normalaizedName.includes(normalaizedFilter);
-      return result;
-    });
-  };
-   
+  const isRefreshing = useSelector(getIsRefreshing);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
-    <Container>      
-          <Section title="Phonebook">
-            <TitleH1>Phonebook</TitleH1>
-            <ContactForm onAddContacs={addNewContact} />
-          </Section>
-          <Section title="Contacts">
-            <TitleH2>Contacts</TitleH2>          
-        <Filter value={filterName} onChange={handleFilter} />         
-            <ContactList
-              contacts={getFilterContact()}              
-            />
-            {error && <p>oops, something went wrong</p>}
-            {isloading && <p> ... loading</p>}
-          </Section>
-        </Container>
-      );
-}
+    !isRefreshing && (
+      <ThemeProvider theme={theme}>
+        <AppBar />
+        <Wrapper>
+          <Layout />
+        </Wrapper>
+      </ThemeProvider>
+    )
+  );
+};
+
+
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { ContactForm } from 'components/ContactForm/ContactForm';
+// import { Filter } from 'components/Filter/Filter';
+// import { ContactList } from 'components/ContactList/ContactList';
+// import { filterContacts } from 'redux/filterSlice';
+// import * as operations from 'redux/operations';
+// import { selectContacts, selectFilter, selectState } from 'redux/selector';
+// import { Container, Section, TitleH1, TitleH2 } from './AppStyled';
+
+// export const App = () => {
+//   const dispatch = useDispatch();
+//   const contacts = useSelector(selectContacts);
+//   const filterName = useSelector(selectFilter);
+//   const { isloading, error } = useSelector(selectState);
+  
+// useEffect(() => { dispatch(operations.fetchContacts()) }, [dispatch]);
+
+// // Добавляет контакт в список
+//    const addNewContact = ({ name, phone }) => {
+//     const normalizedFind = name.toLowerCase();
+//     const findName = contacts.find(
+//       contact => contact.name.toLowerCase() === normalizedFind
+//     );
+//     if (findName) {
+//       return alert(`${name} is already in contacts.`);
+//     }
+//     const findNumber = contacts.find(
+//       contact => contact.phone === phone
+//     );
+//     if (findNumber) {
+//       return alert(`This phone number is already in use.`);
+//     }   
+//     //  dispatch(addContact({ name, phone }));
+//   };
+  
+//   const handleFilter = evt => {
+//     const { value } = evt.currentTarget;
+//     dispatch(filterContacts(value));
+//   };
+
+//  // Возвращает результат фильтра
+//   const getFilterContact = () => {
+//     if (!filterName) {
+//       return contacts;
+//     }
+//     const normalaizedFilter = filterName.toLowerCase();
+
+//     return contacts.filter(({ name }) => {
+//       const normalaizedName = name.toLowerCase();
+//       const result = normalaizedName.includes(normalaizedFilter);
+//       return result;
+//     });
+//   };
+   
+
+//   return (
+//     <Container>      
+//           <Section title="Phonebook">
+//             <TitleH1>Phonebook</TitleH1>
+//             <ContactForm onAddContacs={addNewContact} />
+//           </Section>
+//           <Section title="Contacts">
+//             <TitleH2>Contacts</TitleH2>          
+//         <Filter value={filterName} onChange={handleFilter} />         
+//             <ContactList
+//               contacts={getFilterContact()}              
+//             />
+//             {error && <p>oops, something went wrong</p>}
+//             {isloading && <p> ... loading</p>}
+//           </Section>
+//         </Container>
+//       );
+// }
 
  

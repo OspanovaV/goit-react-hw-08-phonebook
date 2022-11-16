@@ -28,3 +28,11 @@ export const TitleH2 = styled.h2`
   font-size: 20px;
   font-weight: bold;
 `;
+
+export const Wrapper = styled.div`
+  padding-top: 130px;
+  
+  background-repeat: repeat;
+  background-size: contain;
+  padding-bottom: 600px;
+`;
