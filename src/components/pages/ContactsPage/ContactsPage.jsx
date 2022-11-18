@@ -9,11 +9,35 @@ import {
   ContactsTitle,
   LoaderText,
 } from './ContactsPageStyled';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/selector';
+import { getFilter } from 'redux/selector';
+import { filterContacts } from 'redux/filterSlice';
 
 export const ContactsPage = () => {
   const { isLoading } = useSelector(getContacts);
+  const contacts = useSelector(getContacts);
+
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const filterChange = evt => {
+    const { value } = evt.currentTarget;
+    dispatch(filterContacts(value));
+  };
+
+  const getFilters = () => {
+    if (!filter) {
+      return contacts;
+    }
+    const normalaizedFilter = filter.toLowerCase();
+
+    return contacts.filter(({ name }) => {
+      const normalaizedName = name.toLowerCase();
+      const result = normalaizedName.includes(normalaizedFilter);
+      return result;
+    });
+  };
   return (
     <ContactsPageWrapper>
       <ContactsFormWrapper>
@@ -23,10 +47,10 @@ export const ContactsPage = () => {
 
       <ContactsListWrapper>
         <ContactsTitle>Contacts</ContactsTitle>
-        <Filter />
+        <Filter onChange={filterChange} value={filter} />
         {isLoading && <LoaderText>Waiting...</LoaderText>}
 
-        <ContactList />
+        <ContactList contacts={getFilters()}/>
       </ContactsListWrapper>
     </ContactsPageWrapper>
   );

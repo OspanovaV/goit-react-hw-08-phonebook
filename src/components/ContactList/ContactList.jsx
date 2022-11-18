@@ -6,12 +6,12 @@ import { useDispatch } from 'react-redux';
 export const ContactList = ({ contacts }) => {
   const dispatch = useDispatch();   
 
-  const ContactItem = contacts.map(({ id, name, phone }) => {
+  const ContactItem = contacts.map(({ id, name, number }) => {
     return (  
       
       <Item key={id}>
         <p>
-          {name}: {phone}
+          {name}: {number}
         </p>
         <Button type="button" onClick={() => dispatch(deleteContact(id))}>
           Delete

@@ -18,8 +18,7 @@ export const Layout = () => {
           element={
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
-        />
-
+        />т
         <Route
           path="/register"
           element={

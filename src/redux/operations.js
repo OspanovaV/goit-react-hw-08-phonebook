@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
+import{ instanceContact} from 'Api/ContactsApi';
+
 import {
   getContacts,
   addContacts,
@@ -11,10 +13,10 @@ import {
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    instanceContact.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    instanceContact.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -89,7 +91,7 @@ export const logOut = createAsyncThunk('auth/logOut',
 export const refreshUser = createAsyncThunk('auth/refreshUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log(state);
+    // console.log(state);
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
@@ -97,7 +99,7 @@ export const refreshUser = createAsyncThunk('auth/refreshUser',
     }
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await instanceContact.get('/users/current');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
