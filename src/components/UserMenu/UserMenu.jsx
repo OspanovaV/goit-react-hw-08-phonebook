@@ -14,7 +14,7 @@ export const UserMenu = () => {
 
   return (
     <MenuWrapper>
-      <NavLink to ="/contacts"></NavLink>
+      <NavLink to ='/contacts'>Contacts</NavLink>
       <UserName>{name}</UserName>
       <MenuButton type="button" onClick={handleClick}>
         Logout
