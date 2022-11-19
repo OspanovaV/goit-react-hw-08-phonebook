@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/selector';
 import { getFilter } from 'redux/selector';
 import { filterContacts } from 'redux/filterSlice';
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/operations';
 
 export const ContactsPage = () => {
   const { isLoading } = useSelector(getContacts);
@@ -20,6 +22,10 @@ export const ContactsPage = () => {
 
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const filterChange = evt => {
     const { value } = evt.currentTarget;

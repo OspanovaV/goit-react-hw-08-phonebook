@@ -2,6 +2,7 @@ import { MenuWrapper, MenuButton, UserName } from './UserMenuStyled';
 import { getUserName } from 'redux/selector';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from 'redux/operations';
+import { NavLink } from 'react-router-dom';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export const UserMenu = () => {
 
   return (
     <MenuWrapper>
+      <NavLink to ="/contacts"></NavLink>
       <UserName>{name}</UserName>
       <MenuButton type="button" onClick={handleClick}>
         Logout

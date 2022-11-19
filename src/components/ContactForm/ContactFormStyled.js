@@ -46,9 +46,9 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   margin-bottom: 20px;
-  height: 60px;
+  height: 32px;
   font-size: 16px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
 `;
 
 export const Button = styled.button`
