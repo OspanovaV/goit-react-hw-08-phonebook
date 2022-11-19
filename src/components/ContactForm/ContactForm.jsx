@@ -16,7 +16,7 @@ export function ContactForm() {
     dispatch(addContact(data))
   };
 
-//обновление состояния (добавим коммент)
+//обновление состояния
   const handleChange = event => {
     const { name, value } = event.currentTarget;
     switch (name) {

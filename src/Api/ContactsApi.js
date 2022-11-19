@@ -33,6 +33,6 @@ export const logInUser = async (credentials) => {
 }
 //разлогиниться
 export const logOutUser = async () => { 
-  const { data } = await instanceContact.post(`/user/logout`);
+  const { data } = await instanceContact.post(`/users/logout`);
         return data;
 }
