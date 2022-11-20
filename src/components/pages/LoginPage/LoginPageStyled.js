@@ -34,8 +34,7 @@ export const ErrorText = styled.p`
 `;
 
 export const FormLabel = styled.label`
-  margin-bottom: 10px;
-  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 10px;  
   font-weight: 500;
   font-size: 30px;
 `;
