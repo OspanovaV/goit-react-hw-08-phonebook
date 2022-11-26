@@ -21,12 +21,16 @@ export const Item = styled.li`
     background: black;
     border-radius: 50%;
     position: absolute;
-    margin-left: -10px;
+    margin-left: -15px;
     margin-top: 6px;
 }
+`;
+export const Title = styled.p`
+  margin-left: 8px;  
+  font-size: 20px;
 `;
 
 export const Button = styled.button`
   margin-left: 20px;  
-  font-size: 10px;
+  font-size: 16px;
 `;

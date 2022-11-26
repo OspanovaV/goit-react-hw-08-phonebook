@@ -4,14 +4,14 @@ import { getIsRefreshing } from 'redux/selector';
 import { refreshUser } from 'redux/operations';
 import { Layout } from 'components/Layout';
 import { AppBar } from 'components/AppBar/AppBar';
-import { Wrapper } from './AppStyled';
+import { Wrapper, Footer } from './AppStyled';
 import { ThemeProvider } from '@mui/material';
 import { theme } from 'shared/theme';
 
 export const App = () => {
-
   const dispatch = useDispatch();
   const isRefreshing = useSelector(getIsRefreshing);
+  
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -23,6 +23,9 @@ export const App = () => {
         <Wrapper>
           <Layout />
         </Wrapper>
+        <Footer>
+        <p> &copy; 2022 Vita Ospanova. All rights reserved</p>
+      </Footer>
       </ThemeProvider>
     )
   );

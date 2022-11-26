@@ -13,15 +13,12 @@ export const Layout = () => {
     <Container>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+        <Route path="/contacts" element={
+            <PrivateRoute 
+            redirectTo="/login" component={<ContactsPage />} />
           }
-        />т
-        <Route
-          path="/register"
-          element={
+        />
+        <Route path="/register" element={
             <RestrictedRoute
               redirectTo="/contacts"
               component={<RegisterPage />}

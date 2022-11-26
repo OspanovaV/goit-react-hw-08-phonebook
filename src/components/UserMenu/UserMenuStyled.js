@@ -1,11 +1,13 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
+// import styled from '@emotion/styled';
 
-export const MenuWrapper = styled.div` 
+export const MenuWrapper = styled.div`  
+  display: flex;
+  gap: 10px;
   color: #ff7a05;
   text-align: right;
-  margin-right: 20px;
   &:last-child {
-    margin-right: 0;
+    margin-right: 10px;
   }
 `;
 
@@ -17,5 +19,5 @@ export const MenuButton = styled.button`
 `;
 
 export const UserName = styled.p`
-  margin-bottom: 10px;
+  font-size: 16px;
 `;

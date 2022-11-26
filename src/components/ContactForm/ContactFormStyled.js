@@ -1,28 +1,34 @@
-import styled from '@emotion/styled';
+// import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 250px;
-  padding: 10px;
-  margin-bottom: 40px;
-  outline: 1px solid black;
-  border-radius: 5%; 
+export const Form = styled.form`       
+ flex-direction: column;
+ width: 450px;
+ height: 120px;
+ padding: 10px;
+ margin-bottom: 40px;
+ display: flex;
 `;
 
-export const Label = styled.label`
+export const Label = styled.label`    
   margin-bottom: 10px;  
-  font-weight: 500;
-  font-size: 25px;
+  font-weight: 500px;
+  font-size: 16px;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
 `;
 
 export const Input = styled.input`
   display:block;
-margin-bottom: 20px;
-  height: 32px;
-  font-size: 16px;
-  letter-spacing: 0.05em;
+  width: 100%;
+  margin: 0;
+  padding: 10px 42px;
+  font: inherit;
+  font-size: 18px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid rgba(45,18,18,.2);
+  color: #ff7a05;  
 `;
 
 export const Button = styled.button`
@@ -30,6 +36,6 @@ export const Button = styled.button`
   width: 100px;
   cursor: pointer;
   background-color: wight;
-  border-radius: 5%;
+  border-radius: 4px;
   color: black;
 `;

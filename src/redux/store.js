@@ -15,8 +15,8 @@ import {
 export const store = configureStore({
     reducer: {
         auth: extraReducers,
-       contacts: contactReducer,
-       filter: filterReducer, 
+        contacts: contactReducer,
+        filter: filterReducer, 
     },
     middleware: getDefaultMiddleware=>  getDefaultMiddleware({
         serializableCheck: {

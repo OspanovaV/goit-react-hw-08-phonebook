@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { register } from 'redux/operations';
@@ -48,10 +48,10 @@ export const RegisterPage = () => {
     setEmail('');
     setPassword('');
   };
-
-  const nameInputId = nanoid();
-  const emailInputId = nanoid();
-  const passwordInputId = nanoid();
+//используем useMemo для оптимизации
+  const nameInputId = useMemo(()=> nanoid(), []);
+  const emailInputId = useMemo(()=> nanoid(), []);
+  const passwordInputId = useMemo(()=> nanoid(), []);
 
   return (
     <RegWrapper>

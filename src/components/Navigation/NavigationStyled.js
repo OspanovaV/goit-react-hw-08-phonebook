@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
+// import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
@@ -6,19 +7,14 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  margin-right: 20px;
+  margin-right: 20px; 
   &:last-child {
     margin-right: 0;
   }
 `;
 
 export const Link = styled(NavLink)`
-  color: #z;
-  transition: color var(--main-hover-animation);
-  :hover,
-  :focus {
-    color: #ff7a05;
-  }
+  color: #fffff;   
   &.active {
     color: #cccccc;
   }

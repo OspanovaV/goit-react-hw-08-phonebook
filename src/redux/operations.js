@@ -53,6 +53,11 @@ export const deleteContact = createAsyncThunk('contacts/delete',
     }
 );
 
+/*
+* POST @ /users/signup
+* body: { name, email, password }
+* После успешной регистрации добавляем токен в HTTP-заголовок 
+*/
 export const register = createAsyncThunk('auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
@@ -65,6 +70,11 @@ export const register = createAsyncThunk('auth/register',
   }
 );
 
+/*
+* POST @ /users/login
+* body: { email, password }
+* После успешного логина добавляем токен в HTTP-заголовок 
+*/
 export const logIn = createAsyncThunk('auth/logIn',
   async (credentials, { rejectWithValue }) => {
     try {
@@ -76,6 +86,12 @@ export const logIn = createAsyncThunk('auth/logIn',
     }
   }
 );
+
+/*
+* POST @ /users/logout
+* body: Authorization = Bearer token
+* После успешного логаута, удаляем токен из HTTP-заголовока 
+*/
 export const logOut = createAsyncThunk('auth/logOut',
   async (_, { rejectWithValue }) => {
     try {
@@ -86,8 +102,14 @@ export const logOut = createAsyncThunk('auth/logOut',
     }
   }
 );
-
-
+/*
+* GET @ /users/current
+* headers: Authorization = Bearer token
+* 
+* 1. Забираем токен из стейта через getState()
+* 2. Если токена нет, выходим(отклоняем)
+* 3. Если токен есть, добавляем его в HTTP-заголовок и выполняем операцию  
+ */
 export const refreshUser = createAsyncThunk('auth/refreshUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
