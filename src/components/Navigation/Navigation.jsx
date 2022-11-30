@@ -14,7 +14,7 @@ export const Navigation = () => {
         {!isLoggedIn && ( 
           <>     
         <Item>
-          <NavLink to='/register'>Register</NavLink>
+          <NavLink to='/register'>Registration</NavLink>
         </Item>
         <Item>
           <NavLink to='/login'>Login</NavLink>

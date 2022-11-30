@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 export const Title = styled.h1`
-  text-align: center;
+  text-align: justify;;
   color: black;
-  font-size: 60px;  
+  font-size: 30px;  
   width: 500px;
   margin: 0 auto;
 `;

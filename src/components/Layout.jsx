@@ -1,15 +1,22 @@
+import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 
-import { HomePage } from './pages/HomePage/HomePage';
-import { ContactsPage } from './pages/ContactsPage/ContactsPage';
-import { RegisterPage } from './pages/RegisterPage/RegisterPage';
-import { LoginPage } from './pages/LoginPage/LoginPage';
+// const Container = lazy(() => import('components/App/AppStyled'));
 import { Container } from 'components/App/AppStyled';
+// const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+import { HomePage } from './pages/HomePage/HomePage';
+// const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
+import { ContactsPage } from './pages/ContactsPage/ContactsPage';
+// const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+import { RegisterPage } from './pages/RegisterPage/RegisterPage';
+// const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+import { LoginPage } from './pages/LoginPage/LoginPage';
 
 export const Layout = () => {
   return (
+    <Suspense fallback={<p>...Load page</p>}>
     <Container>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -38,6 +45,7 @@ export const Layout = () => {
         />
         <Route path="*" element={<p>Sorry, something went wrong</p>}></Route>
       </Routes>
-    </Container>
+      </Container>
+    </Suspense>
   );
 };
